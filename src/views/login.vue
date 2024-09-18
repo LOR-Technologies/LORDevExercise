@@ -10,6 +10,23 @@
 </template>
 
 
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+    };
+  },
+  methods: {
+    handleLogin() {
+      // Call backend API to authenticate
+      this.$router.push('/dashboard');
+    },
+  },
+};
+</script>
+
 <style scoped>
 .login-container {
   margin: 0 auto;

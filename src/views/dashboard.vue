@@ -8,5 +8,16 @@
     </ul>
   </div>
 </template>
+<script>
+import { useFoodStore } from '../store';
 
+export default {
+  setup() {
+    const foodStore = useFoodStore();
+    const foodItems = foodStore.foodItems;
+
+    return { foodItems };
+  },
+};
+</script>
 

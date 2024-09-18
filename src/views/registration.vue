@@ -10,6 +10,18 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      email: '',
+      password: '',
+    };
+  },
+};
+</script>
+
 <style scoped>
 .register-container {
   margin: 0 auto;
