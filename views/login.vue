@@ -1,17 +1,17 @@
 <template>
-  <div class="register-container">
-    <h2>Register</h2>
-    <form @submit.prevent="handleRegister">
+  <div class="login-container">
+    <h2>Login</h2>
+    <form @submit.prevent="handleLogin">
       <input v-model="username" placeholder="Username" required />
-      <input v-model="email" placeholder="Email" required />
       <input v-model="password" type="password" placeholder="Password" required />
-      <button type="submit">Register</button>
+      <button type="submit">Login</button>
     </form>
   </div>
 </template>
 
+
 <style scoped>
-.register-container {
+.login-container {
   margin: 0 auto;
   padding: 1rem;
   max-width: 400px;
