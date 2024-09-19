@@ -10,6 +10,29 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    async handleRegister() {
+      // Add your registration logic here
+      const user = {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+      };
+      console.log("User registered: ", user);
+    },
+  },
+};
+</script>
+
 <style scoped>
 .register-container {
   margin: 0 auto;

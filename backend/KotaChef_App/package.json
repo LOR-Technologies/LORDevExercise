@@ -1,5 +1,5 @@
 {
-  "name": "KotaApp",
+  "name": "KotaChef_App",
   "scripts": {
     "dev": "tsx watch src/index.ts"
   },

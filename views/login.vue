@@ -9,6 +9,26 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+    };
+  },
+  methods: {
+    async handleLogin() {
+      // Add your login logic here
+      const credentials = {
+        username: this.username,
+        password: this.password,
+      };
+      console.log("Logged in with: ", credentials);
+    },
+  },
+};
+</script>
 
 <style scoped>
 .login-container {
