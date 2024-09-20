@@ -11,14 +11,24 @@
   "dependencies": {
     "drizzle-orm": "^0.33.0",
     "pinia": "^2.2.2",
+<<<<<<< HEAD
     "tailwindcss": "^3.4.12",
     "typescript": "^5.6.2",
     "vue": "^3.4.37",
+=======
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.6.2",
+    "vue": "^3.5.6",
+>>>>>>> f76e4f398d0ce868c31699923340a52974671b92
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
+<<<<<<< HEAD
     "vite": "^5.4.1",
     "vite-tsconfig-paths": "^5.0.1"
+=======
+    "vite": "^5.4.1"
+>>>>>>> f76e4f398d0ce868c31699923340a52974671b92
   }
 }
