@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <h2>Food Inventory Dashboard</h2>
+    <h2>KOTA MENU</h2>
     <ul>
       <li v-for="item in foodItems" :key="item.id">
         {{ item.name }} - {{ item.quantity }} units - R{{ item.price }}
