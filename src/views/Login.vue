@@ -16,22 +16,34 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
 export default {
-  data() {
-    return {
-      username: '',
-      password: '',
-    };
-  },
-  methods: {
-    handleLogin() {
-      // Add your login logic here
-      console.log('Logging in with:', this.username, this.password);
+  name: "Login",
+  setup() {
+    const router = useRouter();
+    const username = ref('');
+    const password = ref('');
+
+    const handleLogin = async () => {
+      // Add login logic here
+      console.log('Logging in with:', username.value, password.value);
+
       // Reset the fields after submission
-      this.username = '';
-      this.password = '';
-    },
-  },
+      username.value = '';
+      password.value = '';
+
+      // Navigate to dashboard after successful login
+      router.push('/dashboard');
+    };
+
+    return {
+      username,
+      password,
+      handleLogin
+    };
+  }
 };
 </script>
 

@@ -1,19 +1,7 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          Logo
-        </a>
-        <a role="button" class="navbar-kota kota" aria-label="menu" aria-expanded="false" @click="toggleNavbar">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
       <div class="navbar-menu" :class="{ 'is-active': isNavbarActive }">
         <div class="navbar-start">
-          <a class="navbar-item" href="/home">Home</a>
-          <a class="navbar-item" href="/about">About</a>
         </div>
       </div>
     </nav>

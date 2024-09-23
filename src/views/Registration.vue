@@ -24,31 +24,43 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
 export default {
   name: "Registration",
-  data() {
-    return {
-      username: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    };
-  },
-  methods: {
-    handleRegister() {
-      if (this.password !== this.confirmPassword) {
+  setup() {
+    const router = useRouter();
+    const username = ref('');
+    const email = ref('');
+    const password = ref('');
+    const confirmPassword = ref('');
+
+    const handleRegister = () => {
+      if (password.value !== confirmPassword.value) {
         alert("Passwords do not match!");
         return;
       }
       // Add your registration logic here
-      console.log('Registering with:', this.username, this.email);
+      console.log('Registering with:', username.value, email.value);
       // Reset the fields after submission
-      this.username = '';
-      this.email = '';
-      this.password = '';
-      this.confirmPassword = '';
-    },
-  },
+      username.value = '';
+      email.value = '';
+      password.value = '';
+      confirmPassword.value = '';
+
+      // Navigate to login page after successful registration
+      router.push('/login');
+    };
+
+    return {
+      username,
+      email,
+      password,
+      confirmPassword,
+      handleRegister
+    };
+  }
 };
 </script>
 

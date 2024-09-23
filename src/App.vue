@@ -1,25 +1,21 @@
 <template>
-  <div id="App">
-  
+  <div id="app">
+    <header class="header">
+      <nav class="navbar">
+        <div class="logo">KotaChef</div>
+        <ul class="nav-links">
+          <li><router-link to="/" class="nav-link">Home</router-link></li>
+          <li><router-link to="/registration" class="nav-link">Registration</router-link></li>
+          <li><router-link to="/login" class="nav-link">Login</router-link></li>
+          <li><router-link to="/dashboard" class="nav-link">Dashboard</router-link></li>
+        </ul>
+      </nav>
+    </header>
 
-  <nav class="navbar">
-    <div class="navbar-container">
-      <a src="">hhh</a>
-      <ul class="nav-links">
-        <li>
-          <a href="/home">Home</a>
-        </li>
-        <li>
-          <a href="/register">Register</a>
-        </li>
-        <li>
-          <a href="/login">Login</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <router-view></router-view>
-</div>
+    <main>
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -29,40 +25,57 @@ export default {
 </script>
 
 <style scoped>
-.navbar {
-  background-color: #007bff;
-  padding: 10px;
+#app {
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-.navbar-container {
+.header {
+  background-color: #343a40; /* Dark background for the header */
+  color: #ffffff; /* White text color */
+  padding: 1rem 2rem;
+}
+
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  color: white;
-  text-decoration: none;
-  font-size: 24px;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .nav-links {
   list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  gap: 20px;
 }
 
 .nav-links li {
-  display: inline;
+  margin-left: 1rem;
 }
 
-.nav-links a {
-  color: white;
+.nav-link {
   text-decoration: none;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.nav-links a:hover {
-  text-decoration: underline;
+.nav-link:hover,
+.nav-link.active {
+  background-color: #495057; /* Slightly lighter background on hover */
+  color: #f8f9fa; /* Light text color on hover */
+}
+
+main {
+  padding: 2rem;
 }
 </style>
-
