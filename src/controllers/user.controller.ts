@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { userSchema, usersTable } from "../schemas/user.schema";
+import usersTable from "../schemas/user.schema";
 import db from "../config/db";
 
 const createUserController = async (c: any) => {

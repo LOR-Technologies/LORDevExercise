@@ -1,6 +1,4 @@
-import { pgSchema, pgTable, serial, varchar } from "drizzle-orm/pg-core";
-
-const userSchema = pgSchema("user");
+import { pgTable, serial, varchar } from "drizzle-orm/pg-core";
 
 const usersTable = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -9,4 +7,4 @@ const usersTable = pgTable("users", {
   password: varchar("password", { length: 256 }),
 });
 
-export { userSchema, usersTable };
+export default usersTable;
