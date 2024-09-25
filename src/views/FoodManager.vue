@@ -21,7 +21,7 @@
       <h2>Food Items</h2>
       <ul>
         <li v-for="(food, index) in foodItems" :key="index">
-          {{ food.name }} - ${{ food.price }}
+          {{ food.name }} - R{{ food.price }}
           <button @click="editFood(index)">Edit</button>
           <button @click="deleteFood(food.id)">Delete</button>
         </li>
