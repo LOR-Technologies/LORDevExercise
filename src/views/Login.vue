@@ -11,7 +11,11 @@
         <input type="password" v-model="password" id="password" required />
       </div>
       <button type="submit">Login</button>
+      <p class="error-message" v-if="errorMessage">{{ errorMessage }}</p>
     </form>
+    <div class="forgot-password">
+      <a href="#" @click.prevent="forgotPassword">Forgot your password?</a>
+    </div>
   </div>
 </template>
 
@@ -25,23 +29,39 @@ export default {
     const router = useRouter();
     const username = ref('');
     const password = ref('');
+    const errorMessage = ref('');
 
     const handleLogin = async () => {
-      // Add login logic here
-      console.log('Logging in with:', username.value, password.value);
+      // Hardcoded credentials for validation (for demo purposes)
+      const correctUsername = 'user';
+      const correctPassword = 'password123';
 
-      // Reset the fields after submission
-      username.value = '';
-      password.value = '';
+      // Check if the entered username and password are correct
+      if (username.value === correctUsername && password.value === correctPassword) {
+        // Clear the fields and error message after successful login
+        username.value = '';
+        password.value = '';
+        errorMessage.value = '';
 
-      // Navigate to dashboard after successful login
-      router.push('/dashboard');
+        // Navigate to the dashboard
+        router.push('/dashboard');
+      } else {
+        // Show error message if login fails
+        errorMessage.value = 'Invalid username or password';
+      }
+    };
+
+    const forgotPassword = () => {
+      // Logic for forgot password action (e.g., redirect or show modal)
+      alert("Forgot password functionality to be implemented.");
     };
 
     return {
       username,
       password,
-      handleLogin
+      handleLogin,
+      errorMessage,
+      forgotPassword
     };
   }
 };
@@ -80,5 +100,21 @@ button {
 }
 button:hover {
   background-color: #0056b3;
+}
+.forgot-password {
+  margin-top: 10px;
+  text-align: center;
+}
+.forgot-password a {
+  color: #007bff;
+  text-decoration: none;
+}
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
 }
 </style>

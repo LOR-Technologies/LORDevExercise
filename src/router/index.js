@@ -4,7 +4,7 @@ import Nav from '../views/Nav.vue';
 import Registration from '../views/Registration.vue';
 import Login from '../views/Login.vue';
 import Dashboard from '../views/Dashboard.vue';
-
+import Users from '../views/Users.vue';
 
 
 
@@ -14,8 +14,8 @@ const routes = [
   { path: '/nav', name: 'Nav', component: Nav},
   { path: '/login', name: 'Login', component: Login },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/registration', name: 'Registration', component: Registration }
-  //{ path: '/', redirect: '/registration' }
+  { path: '/registration', name: 'Registration', component: Registration },
+  { path: '/users', component: Users },
 ];
 
 const router = createRouter({
