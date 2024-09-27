@@ -52,7 +52,7 @@ export default {
     // Fetch the food items from the backend (or local data)
     async fetchItems() {
       try {
-        const response = await fetch('http://localhost:5173');
+        const response = await fetch('http://localhost:3000/users');
         if (!response.ok) {
           throw new Error('Failed to fetch food items');
         }

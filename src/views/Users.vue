@@ -22,7 +22,7 @@ export default {
     async fetchAllUsers() {
       try {
         // Make the API request to fetch users from the backend
-        const response = await fetch('http://localhost:5173', { method: 'GET'});
+        const response = await fetch('http://localhost:3000/users', { method: 'GET'});
         if (!response.ok) {
           throw new Error('Failed to fetch users');
         }

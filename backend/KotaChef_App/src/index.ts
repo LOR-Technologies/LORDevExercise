@@ -1,43 +1,34 @@
-import { Hono } from 'hono';
+import express from 'express';
+import cors from 'cors';
 import { fetchAllUsers, insertUser } from './Api'; // Import your database query functions
-import fs from 'fs';
-import { createServer } from 'http'; 
 
-// Log the current working directory
-console.log("Current directory:", process.cwd());
+const app = express();
+const PORT = 3000;
 
-// Log the files in the 'src' directory
-console.log("Files in 'src' directory:", fs.readdirSync("./src"));
+// Enable CORS
+app.use(cors({
+  origin: 'http://localhost:5173', // Adjust as necessary for your frontend URL
+}));
 
-const app = new Hono();
+// Middleware to parse JSON bodies
+app.use(express.json());
 
 // Route to get all users
-app.get('../Views/Users.vue', async (c) => {
+app.get('/users', async (req, res) => {
   const users = await fetchAllUsers(); // Fetch users from the database
-  return c.json(users);
+  res.json(users);
 });
 
 // Route to insert a new user (via POST)
-app.post('../Views/Users.vue', async (c) => {
-  const { name, email } = await c.req.json(); // Get data from request body
+app.post('/users', async (req, res) => {
+  const { name, email } = req.body; // Get data from request body
   await insertUser(name, email); // Insert new user into the database
-  return c.json({ message: 'User added successfully' });
+  res.json({ message: 'User added successfully' });
 });
 
-// Define the port
-const PORT = 5173;
-
-// Create the server using Node's built-in HTTP module
-createServer(async (req, res) => {
-  // Create a new response object using Hono
-  const honoResponse = await app.fetch(req as any); // Cast req to any
-
-  // Set headers
-  honoResponse.headers.forEach((value, key) => res.setHeader(key, value));
-  res.writeHead(honoResponse.status); // Set status
-
-  const body = await honoResponse.text(); // Get response body as text
-  res.end(body); // Send response body
-}).listen(PORT, () => {
+// Start the server
+app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+export default app;
