@@ -15,14 +15,14 @@ export default {
     };
   },
   async created() {
-    // Call the fetchUsers function when the component is created
+    // Call the fetchAllUsers function when the component is created
     await this.fetchAllUsers();
   },
   methods: {
     async fetchAllUsers() {
       try {
         // Make the API request to fetch users from the backend
-        const response = await fetch('http://localhost:5173/users', { method: 'GET'});
+        const response = await fetch('http://localhost:5173', { method: 'GET'});
         if (!response.ok) {
           throw new Error('Failed to fetch users');
         }

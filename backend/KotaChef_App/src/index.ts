@@ -18,7 +18,7 @@ app.get('../Views/Users.vue', async (c) => {
 });
 
 // Route to insert a new user (via POST)
-app.post('../Views/Users', async (c) => {
+app.post('../Views/Users.vue', async (c) => {
   const { name, email } = await c.req.json(); // Get data from request body
   await insertUser(name, email); // Insert new user into the database
   return c.json({ message: 'User added successfully' });

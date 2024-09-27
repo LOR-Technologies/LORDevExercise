@@ -52,8 +52,7 @@ export default {
     // Fetch the food items from the backend (or local data)
     async fetchItems() {
       try {
-        // Replace 'http://localhost:5173/users' with your backend API URL for fetching food items
-        const response = await fetch('http://localhost:5173/users');
+        const response = await fetch('http://localhost:5173');
         if (!response.ok) {
           throw new Error('Failed to fetch food items');
         }
