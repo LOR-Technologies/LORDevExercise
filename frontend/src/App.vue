@@ -9,7 +9,7 @@ const isLoggedIn = ref(false);  // Reactive state to check if user is logged in
 
 // Check if user is logged in based on localStorage or another method
 onMounted(() => {
-  const user = localStorage.getItem('user');  // Assuming user is stored in localStorage after login
+  const user = localStorage.getItem('user');  // Assuming user is stored in localStorage after login (testing)
   isLoggedIn.value = !!user;  // Convert to boolean (true if user exists)
 });
 
@@ -17,7 +17,7 @@ onMounted(() => {
 function exitWebsite() {
   if (confirm('Are you sure you want to exit?')) {
     localStorage.removeItem('user');  // Clear stored user data
-    window.location.href = 'https://www.google.com';  // Redirect to external site
+    window.location.href = 'https://www.google.com';  // Redirect to external site, to force close on website and provide that functionality
   }
 }
 

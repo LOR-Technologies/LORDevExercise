@@ -10,7 +10,7 @@
         <input type="password" v-model="password" id="password" required />
 
         <button type="submit" class="btn-primary">Login</button>
-        
+
         <!-- Success or Error Message -->
         <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
         <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
@@ -46,6 +46,8 @@ export default {
 
         const data = await response.json();
 
+        console.log('Login response:', data); // Debugging line
+
         if (response.ok) {
           this.successMessage = data.message;
           this.errorMessage = '';
@@ -56,10 +58,11 @@ export default {
             this.$router.push('/dashboard');
           }, 2000);
         } else {
-          this.errorMessage = data.message;
+          this.errorMessage = data.message || 'Login failed. Please try again.';
           this.successMessage = '';
         }
       } catch (error) {
+        console.error('Login error:', error); // Debugging line
         this.errorMessage = 'An error occurred. Please try again later.';
         this.successMessage = '';
       }
@@ -124,6 +127,8 @@ input {
   font-weight: bold;
 }
 </style>
+
+
 
 
 

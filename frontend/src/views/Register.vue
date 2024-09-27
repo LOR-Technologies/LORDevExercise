@@ -76,6 +76,8 @@ export default {
 
         const data = await response.json();
 
+        console.log('Register response:', data);
+
         if (response.ok) {
           this.successMessage = data.message;
 
@@ -84,9 +86,10 @@ export default {
             this.$router.push('/login');
           }, 2000);
         } else {
-          this.emailError = data.message;
+          this.emailError = data.message || 'Registration failed. Please try again.';
         }
       } catch (error) {
+        console.error('Register error:', error); // Debugging line
         this.emailError = 'An error occurred. Please try again later.';
       }
     },
@@ -150,6 +153,7 @@ input {
   font-weight: bold;
 }
 </style>
+
 
 
 

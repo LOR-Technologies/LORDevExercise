@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-container">
     <h1>Welcome, {{ username }}!</h1>
-    <p style="color:blue;">This is your dashboard where you can manage your inventory.</p>
+    <p style="color:blue;">Welcome Chef Kota. This is your dashboard where you can manage your inventory. This includes adding and removing inventory.</p>
     <Inventory />
   </div>
 </template>
