@@ -102,6 +102,70 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+// CRUD routes for managing dashboard items
+
+// Get all dashboard items
+app.get('/api/dashboard-items', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM dashboard_items');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error fetching dashboard items', error.message);
+    res.status(500).json({ message: 'Error fetching dashboard items' });
+  }
+});
+
+// Add a new item to the dashboard
+app.post('/api/dashboard-items', async (req, res) => {
+  const { name, quantity } = req.body; // Use 'name' for the item name
+
+  // Check if both name and quantity are provided
+  if (!name || quantity === undefined) {
+    return res.status(400).json({ message: 'Name and quantity are required' });
+  }
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO dashboard_items (name, quantity) VALUES ($1, $2) RETURNING *',
+      [name, quantity] // Use 'name' for the item name
+    );
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Error adding item', error.message);
+    res.status(500).json({ message: 'Error adding item' });
+  }
+});
+
+// Update an item on the dashboard
+app.put('/api/dashboard-items/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, quantity } = req.body; // Use 'name' for the item name
+
+  try {
+    const result = await pool.query(
+      'UPDATE dashboard_items SET name = $1, quantity = $2 WHERE id = $3 RETURNING *',
+      [name, quantity, id] // Use 'name' for the item name
+    );
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Error updating item', error.message);
+    res.status(500).json({ message: 'Error updating item' });
+  }
+});
+
+// Delete an item from the dashboard
+app.delete('/api/dashboard-items/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await pool.query('DELETE FROM dashboard_items WHERE id = $1', [id]);
+    res.json({ message: 'Item deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting item', error.message);
+    res.status(500).json({ message: 'Error deleting item' });
+  }
+});
+
 // Test route for checking API status
 app.get('/', (req, res) => {
   res.send('Welcome to the Kota Shop API!');
@@ -112,6 +176,8 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Backend is running on http://localhost:${port}`);
 });
+
+
 
 
 
