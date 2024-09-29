@@ -1,6 +1,6 @@
 import { Context } from 'hono';
-import db from '../../db'; 
-import ingredientTable from '../schemas/addItem.schema';
+import db from '../config/db'; 
+import ingredientTable from '../schemas/ingredient.schema';
 
 const addItemController = async (c: Context) => {
   try {

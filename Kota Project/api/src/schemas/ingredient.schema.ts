@@ -1,15 +1,12 @@
-import { pgTable, serial, varchar } from "drizzle-orm/pg-core";
+import { serial, text, integer, pgTable } from 'drizzle-orm/pg-core';
 
 
-const ingredientTable = pgTable("ingredients", {
-    id: serial("id").primaryKey(),
-    name: varchar("name", {length: 256}),
-    mass: varchar("mass", {length: 256}),
-    quantity: varchar("quantity", {length: 256}),
-    price: varchar("price", {length: 256}),
-
+const ingredientTable = pgTable('ingredients', {
+  id: serial('id').primaryKey(),
+  name: text('name'),
+  mass: integer('mass'),
+  quantity: integer('quantity'),
+  price: integer('price'),
 });
 
-
-  
-  export default ingredientTable;
+export default ingredientTable;

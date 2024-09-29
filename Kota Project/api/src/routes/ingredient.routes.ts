@@ -1,6 +1,6 @@
 import Hono  from 'hono';
-import { addItemController } from "../controllers/addItem.controller";
-import { validateIngredientSchemaMiddleware } from "../middlewares/user.middleware";
+import { addItemController } from "../controllers/ingredient.controller";
+import { validateIngredientSchemaMiddleware } from "../middlewares/ingredient.middleware";
 
 const addItemRoutes = new Hono();
 
