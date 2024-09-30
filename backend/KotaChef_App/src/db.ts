@@ -5,16 +5,16 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log('Database Connection String:', String(process.env.DATABASE_URL));
+console.log('Database Connection String:', process.env.DATABASE_URL);
 
-
-// Create a pool with the connection string
 const { Pool } = pg;
 const pool = new Pool({
-  connectionString: String(process.env.DATABASE_URL), // Ensure it's a string
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,  // This disables certificate verification, but is acceptable for development.
+  },
 });
 
-// Test the connection
 pool.query('SELECT NOW()', (err, res) => {
   if (err) {
     console.error('Database connection error:', err);
@@ -24,7 +24,5 @@ pool.query('SELECT NOW()', (err, res) => {
   pool.end();
 });
 
-// Initialize drizzle with the pool
 export const db = drizzle(pool);
-
 export { foodItemsTable };
