@@ -11,12 +11,6 @@ const ingredientsSchema = Joi.object({
 
 // Middleware to validate the ingredient data and token
 const validateIngredientSchemaMiddleware = async (c: Context, next: Next) => {
-  const token = c.req.header('Authorization');
-
-  // Check for authorization token
-  if (!token) {
-    return c.json({ message: 'Unauthorized' }, 401);
-  }
 
   // Validate the request body against the ingredients schema
   try {

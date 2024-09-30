@@ -1,4 +1,4 @@
-import Hono  from 'hono';
+import { Hono }  from 'hono';
 import { addItemController } from "../controllers/ingredient.controller";
 import { validateIngredientSchemaMiddleware } from "../middlewares/ingredient.middleware";
 
