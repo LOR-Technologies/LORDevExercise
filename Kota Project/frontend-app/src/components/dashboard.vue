@@ -5,7 +5,7 @@
       <h1>Stock Inventory Dashboard</h1>
     </header>
 
-    <!-- Inventory Section -->
+    <!-- inventory section -->
     <section class="inventory">
       <ul>
         <li v-for="item in items" :key="item.id">
@@ -31,7 +31,7 @@
         <label for="item-quantity">Quantity:</label>
         <input type="number" id="item-quantity" v-model="form.quantity" />
 
-        <label for="item-price">Price:</label>
+        <label for="item-quantity">Price:</label>
         <input type="number" id="item-price" v-model="form.price" />
 
         <button type="submit">{{ isEditing ? 'Update' : 'Add' }}</button>
@@ -41,33 +41,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 
-// Inventory items, starting with empty array
-const items = ref([])
+// Inventory items data
+const items = ref([
+  { id: 1, name: 'Kota Bread', quantity: 10 },
+  { id: 2, name: 'Russians', quantity: 5 },
+  { id: 3, name: 'Fries', quantity: 9 },
+  { id: 4, name: 'Cheese', quantity: 16 },
+  { id: 5, name: 'Atchar', quantity: 11 },
+  { id: 6, name: 'Polony', quantity: 8 }
+])
+
 // Data and state management
 const form = ref({ name: '', mass: '', quantity: '', price: '' })
 const isEditing = ref(false)
 const currentItemId = ref(null)
 const successMessage = ref('')
 const errorMessage = ref('')
-
-// Fetch items from the Hono.js API
-const fetchItems = async () => {
-  try {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/ingredients/items`)
-    items.value = response.data.items // Set items to the fetched data
-  } catch (error) {
-    console.error('Error fetching items:', error)
-    errorMessage.value = 'Failed to load items'
-  }
-}
-
-// Call fetchItems when the component is mounted
-onMounted(() => {
-  fetchItems()
-})
 
 const handleSubmit = async () => {
   try {
@@ -129,7 +121,7 @@ const deleteItem = async (item) => {
   if (item.quantity === 0) {
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/ingredient/deleteItem/items/${item.id}`
+        `${import.meta.env.VITE_API_URL}/deleteItem/items/${item.id}`
       )
 
       if (response.data.message === 'Item deleted successfully') {
