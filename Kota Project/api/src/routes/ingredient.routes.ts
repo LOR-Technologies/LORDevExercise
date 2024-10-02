@@ -3,9 +3,9 @@ import { addItemController, updateItemController, deleteItemController, getItems
 import { validateIngredientSchemaMiddleware } from "../middlewares/ingredient.middleware";
 
 const ingredient = new Hono();
-ingredient.get('/items', getItemsController);         // Fetch all items
-ingredient.post('/addItem/items', addItemController); // Add new item
-ingredient.put('/updateItem/items', updateItemController); // Update item
+ingredient.get('/items', getItemsController);
+ingredient.post('/addItem/items', validateIngredientSchemaMiddleware, addItemController);
+ingredient.put('/updateItem/items', validateIngredientSchemaMiddleware,  updateItemController);
 ingredient.delete('/deleteItem/items', deleteItemController); 
 
 
