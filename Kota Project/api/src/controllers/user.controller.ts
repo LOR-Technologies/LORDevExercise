@@ -9,7 +9,7 @@ const createUserController = async (c: any) => {
 
     const passwordHash = await bcrypt.hash(password, saltRounds); //generate password hash
 
-    //check if user already exists in db
+    //check if user already exists in db!!
     
     //save info in database table
     await db.insert(usersTable).values({
