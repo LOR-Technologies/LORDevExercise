@@ -37,16 +37,23 @@ export default {
     }
   },
   methods: {
-    register() {
-      // to log form data when the register button is clicked
-      console.log({
-        username: this.username,
-        email: this.email,
-        password: this.password,
-        confirmPassword: this.confirmPassword
-      })
+    async login() {
+      try {
+        const response = await axios.post('https://localhost:3000/user/login', {
+          username: this.username,
+          email: this.email,
+          password: this.password
+        })
 
-      //use fetch to send data
+        console.log('Login successful:', response.data)
+        localStorage.setItem('token', response.data.token)
+        //redirect to the dashboard
+        this.$router.push('/dashboard')
+      } catch (error) {
+        //login error
+        console.error('Login failed:', error.response.data)
+        alert('Login failed: ' + error.response.data.message)
+      }
     }
   }
 }
